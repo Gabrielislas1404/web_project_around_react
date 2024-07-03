@@ -1,56 +1,64 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { api } from '../utils/api';
 import '../blocks/profile.css';
-import PopupWithForm from './PopupWithForm';
+import Card from './Card';
 
 function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick }) {
-  return (
-    <section class="profile">
-      <div class="profile__picture-wrapper">
-        <div class="profile__picture-overlay"></div>
-        <img src="." alt="foto de perfil" class="profile__picture" />
-        <button
-          className="profile__picture-button"
-          onClick={onEditAvatarClick}
-        ></button>
-      </div>
+  const [userName, setUserName] = useState('');
+  const [userDescription, setUserDescription] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
+  const [cards, setCards] = useState([]);
 
-      <div class="profile__container">
-        <h1 class="profile__name"></h1>
+  useEffect(() => {
+    api.getUserInfo().then((data) => {
+      setUserName(data.name);
+      setUserDescription(data.about);
+      setUserAvatar(data.avatar);
+    });
+
+    api.getInitialCards().then((res) => {
+      setCards(res);
+    });
+  });
+
+  useEffect(() => {});
+
+  return (
+    <>
+      <section className="profile">
+        <div class="profile__picture-wrapper">
+          <div class="profile__picture-overlay"></div>
+          <img src={userAvatar} alt="foto de perfil" class="profile__picture" />
+          <button
+            className="profile__picture-button"
+            onClick={onEditAvatarClick}
+          ></button>
+        </div>
+
+        <div class="profile__container">
+          <h1 class="profile__name">{userName}</h1>
+          <button
+            type="button"
+            className="profile__button"
+            onClick={onEditProfileClick}
+          ></button>
+          <h2 class="profile__about-me">{userDescription}</h2>
+        </div>
         <button
           type="button"
-          className="profile__button"
-          onClick={onEditProfileClick}
+          class="profile__add-button"
+          onClick={onAddPlaceClick}
         ></button>
-        <h2 class="profile__about-me"></h2>
-      </div>
-      <button
-        type="button"
-        class="profile__add-button"
-        onClick={onAddPlaceClick}
-      ></button>
-    </section>
+      </section>
+
+      <section className="elements">
+        {cards.map((card) => {
+          return <Card key={card._id} card={card}></Card>;
+        })}
+      </section>
+    </>
   );
 }
-
-/* function handleEditAvatarClick() {
-  const popupElement = document.querySelector('.popup_profile-button');
-  if (popupElement) {
-    popupElement.classList.add('popup_hide');
-  }
-}
-
- const handleEditProfileClick = () => {
-  const popupElement = document.querySelector('.popup');
-  if (popupElement) {
-    popupElement.classList.add('popup_hide');
-  }
-};
-
-const handleAddPlaceClick = () => {
-  const popupElement = document.querySelector('.popup_add-button');
-  if (popupElement) {
-    popupElement.classList.add('popup_hide');
-  }
-};  */
 
 export default Main;

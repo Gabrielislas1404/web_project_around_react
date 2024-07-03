@@ -1,24 +1,31 @@
 import React from 'react';
-import closeButton from '../images/formclosebutton.svg';
-
-function PopupWithForm(name, title, isOpen, onClose, children) {
+function PopupWithForm({
+  name,
+  title,
+  buttonTitle,
+  isOpen,
+  onClose,
+  children,
+}) {
   return (
     <>
       <div className={`popup popup_${name} ${isOpen ? 'popup_hide' : ''} `}>
-        <button type="button" className="popup__close-button" onClick={onClose}>
-          <img src={closeButton} alt="close Button" />
-        </button>
-        <form
-          className={`popup__content popup__content_${name}`}
-          /* novalidate */
-        >
-          <h4 className="popup__title">${title}</h4>
+        <div class="popup__overlay"></div>
+        <form className={`popup__content popup__content_${name}`} novalidate>
+          <button
+            type="button"
+            className="popup__close-button"
+            onClick={onClose}
+          ></button>
+
+          <h4 className="popup__title">{title}</h4>
           {children}
           <button
             className={`popup__save-button popup__save-button_${name}`}
-            /* disabled */ type="submit"
+            disabled
+            type="submit"
           >
-            Guardar
+            {buttonTitle}
           </button>
         </form>
       </div>
