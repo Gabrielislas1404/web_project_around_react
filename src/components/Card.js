@@ -2,6 +2,7 @@ function Card({ card, onCardClick }) {
   function handleClick() {
     onCardClick(card);
   }
+  const likesNumber = card.likes.length;
   return (
     <div className="elements__container">
       <img
@@ -15,7 +16,7 @@ function Card({ card, onCardClick }) {
         <button className="elements__trash"></button>
         <div className="elements__like-wrapper">
           <button className="elements__heart"></button>
-          <span className="elements__like">{card.likes}</span>
+          <span className="elements__like">{likesNumber}</span>
         </div>
       </div>
     </div>
