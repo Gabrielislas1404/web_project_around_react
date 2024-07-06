@@ -10,8 +10,8 @@ function PopupWithForm({
   return (
     <>
       <div className={`popup popup_${name} ${isOpen ? 'popup_hide' : ''} `}>
-        <div class="popup__overlay"></div>
-        <form className={`popup__content popup__content_${name}`} novalidate>
+        <div className="popup__overlay"></div>
+        <form className={`popup__content popup__content_${name}`} noValidate>
           <button
             type="button"
             className="popup__close-button"

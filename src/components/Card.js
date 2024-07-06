@@ -1,7 +1,15 @@
-function Card(card) {
+function Card({ card, onCardClick }) {
+  function handleClick() {
+    onCardClick(card);
+  }
   return (
     <div className="elements__container">
-      <img className="elements__image" src={card.link} alt={card.name} />
+      <img
+        className="elements__image"
+        onClick={handleClick}
+        src={card.link}
+        alt={card.name}
+      />
       <div className="elements__description">
         <h3 className="elements__text">{card.name}</h3>
         <button className="elements__trash"></button>

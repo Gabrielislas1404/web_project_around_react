@@ -1,10 +1,10 @@
-import headerLogo from "../images/headerlogo.svg";
+import headerLogo from '../images/headerlogo.svg';
 
 function Header() {
   return (
-    <header class="header">
-      <img src={headerLogo} alt="encabezado" class="header__logo" />
-      <div class="header__line"></div>
+    <header className="header">
+      <img src={headerLogo} alt="encabezado" className="header__logo" />
+      <div className="header__line"></div>
     </header>
   );
 }

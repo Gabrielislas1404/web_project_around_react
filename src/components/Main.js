@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { api } from '../utils/api';
 import '../blocks/profile.css';
 import Card from './Card';
+import ImagePopup from './ImagePopup';
 
 function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick }) {
   const [userName, setUserName] = useState('');
@@ -11,18 +12,26 @@ function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick }) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    api.getUserInfo().then((data) => {
-      setUserName(data.name);
-      setUserDescription(data.about);
-      setUserAvatar(data.avatar);
-    });
+    api
+      .getUserInfo()
+      .then((data) => {
+        setUserName(data.name);
+        setUserDescription(data.about);
+        setUserAvatar(data.avatar);
+      })
+      .catch((error) => {
+        console.error('Error', error);
+      });
 
-    api.getInitialCards().then((res) => {
-      setCards(res);
-    });
-  });
-
-  useEffect(() => {});
+    api
+      .getInitialCards()
+      .then((res) => {
+        setCards(res);
+      })
+      .catch((error) => {
+        console.error('Error', error);
+      });
+  }, []);
 
   return (
     <>
@@ -52,9 +61,21 @@ function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick }) {
         ></button>
       </section>
 
+      {selectedCard && (
+        <ImagePopup selectedCard={selectedCard} onClose={closeAllPopups} />
+      )}
+
       <section className="elements">
         {cards.map((card) => {
-          return <Card key={card._id} card={card}></Card>;
+          return (
+            <Card
+              key={card._id}
+              card={card}
+              ImagePopup={selectedCard}
+              onCardClick={onCardClick}
+              onClose={closeAllPopups}
+            ></Card>
+          );
         })}
       </section>
     </>

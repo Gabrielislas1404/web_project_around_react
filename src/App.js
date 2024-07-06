@@ -5,12 +5,16 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import PopupWithForm from './components/PopupWithForm';
-import api from './utils/api';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
@@ -28,6 +32,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setSelectedCard(null);
   };
 
   return (
@@ -37,7 +42,9 @@ function App() {
         onEditAvatarClick={handleEditAvatarClick}
         onEditProfileClick={handleEditProfileClick}
         onAddPlaceClick={handleAddPlaceClick}
+        onCardClick={handleCardClick}
         onClose={closeAllPopups}
+        selectedCard={selectedCard}
       />
 
       <PopupWithForm
@@ -53,8 +60,8 @@ function App() {
             name="name"
             id="input-name"
             placeholder="Nombre"
-            minlength="2"
-            maxlength="40"
+            minLength="2"
+            maxLength="40"
             required
             className="popup__input popup__input_name"
           />
@@ -64,8 +71,8 @@ function App() {
             name="occupation"
             id="occupation"
             placeholder="Acerca de mí"
-            minlength="2"
-            maxlength="200"
+            minLength="2"
+            maxLength="200"
             required
             className="popup__input popup__input_occupation"
           />
@@ -86,8 +93,8 @@ function App() {
             name="title"
             id="title"
             placeholder="Título"
-            minlength="2"
-            maxlength="30"
+            minLength="2"
+            maxLength="30"
             required
             className="title-input-error popup__input popup__input_title"
           />
@@ -97,7 +104,7 @@ function App() {
             name="link"
             id="link"
             placeholder="Enlace a la imágen"
-            minlength="7"
+            minLength="7"
             required
             className="popup__input popup__input_link"
           />
@@ -118,7 +125,7 @@ function App() {
             name="picture"
             id="popup__avatar-input"
             placeholder="Imágen de perfil"
-            minlength="7"
+            minLength="7"
             required
             className="popup__input popup__input_link"
           />
