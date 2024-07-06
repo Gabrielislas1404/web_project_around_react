@@ -20,9 +20,7 @@ function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick }) {
     api.getInitialCards().then((res) => {
       setCards(res);
     });
-  });
-
-  useEffect(() => {});
+  }, []);
 
   return (
     <>
@@ -53,7 +51,7 @@ function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick }) {
       </section>
 
       <section className="elements">
-        {cards.map((card) => {
+        {cards?.map((card) => {
           return <Card key={card._id} card={card}></Card>;
         })}
       </section>

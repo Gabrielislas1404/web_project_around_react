@@ -1,4 +1,5 @@
-function Card(card) {
+function Card({ card }) {
+  const likesNumber = card.likes.length;
   return (
     <div className="elements__container">
       <img className="elements__image" src={card.link} alt={card.name} />
@@ -7,7 +8,7 @@ function Card(card) {
         <button className="elements__trash"></button>
         <div className="elements__like-wrapper">
           <button className="elements__heart"></button>
-          <span className="elements__like">{card.likes}</span>
+          <span className="elements__like">{likesNumber}</span>
         </div>
       </div>
     </div>
