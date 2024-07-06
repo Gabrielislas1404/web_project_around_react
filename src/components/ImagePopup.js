@@ -1,11 +1,12 @@
 function ImagePopup({ selectedCard, onClose }) {
+  console.log('imagePopup', selectedCard);
   return (
     <div className="popup popup_image">
       <div className="popup__overlay"></div>
       <div className="popup__image-container">
         <button
           type="button"
-          class="popup__close-button popup__close-button_image"
+          className="popup__close-button popup__close-button_image"
           onClick={onClose}
         ></button>
         <img src={selectedCard.link} alt="" className="popup__picture" />
