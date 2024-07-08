@@ -11,7 +11,7 @@ En el directorio del proyecto, puede ejecutar:
 Ejecuta la app en development mode.\
 Abre [http://localhost:3000] para ver en el navegador.
 
-### Esta es la versión más reciente del proyecto web_project_around.
+### Esta es la versión más reciente del proyecto web_project_around_react
 
 💻 💻 💻
 
@@ -27,6 +27,6 @@ El enfoque de este proyecto fue utilizar herramientas de React para crear una r�
 
 ##### El proyecto ha sido realizado en VSS (Visual Studio Code) y visualizado con mi navegador Google Chrome Versión 116.0.5845.187 (Build oficial) (x86_64)
 
-##Se añadirán más funcionalidades en el siguiente Sprint.
+## Se añadirán más funcionalidades en el siguiente Sprint.
 
 Gabriel Islas García
