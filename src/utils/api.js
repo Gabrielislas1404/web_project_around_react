@@ -120,5 +120,3 @@ export const api = new Api('https://around.nomoreparties.co/v1/web_es_12', {
   authorization: 'fa25d0a0-1783-4d33-9dd9-ca8f33a53e6d',
   'Content-Type': 'application/json',
 });
-
-/* export default api; */

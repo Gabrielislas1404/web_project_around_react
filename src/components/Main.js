@@ -72,10 +72,6 @@ function Main({
         ></button>
       </section>
 
-      {selectedCard && (
-        <ImagePopup selectedCard={selectedCard} onClose={onClose} />
-      )}
-
       <section className="elements">
         {cards.map((card) => {
           return (
@@ -89,6 +85,10 @@ function Main({
           );
         })}
       </section>
+
+      {selectedCard && (
+        <ImagePopup selectedCard={selectedCard} onClose={onClose} />
+      )}
     </>
   );
 }

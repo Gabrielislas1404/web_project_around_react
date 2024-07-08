@@ -1,7 +1,9 @@
 function ImagePopup({ selectedCard, onClose }) {
-  console.log('imagePopup', selectedCard);
+  if (!selectedCard) {
+    return null;
+  }
   return (
-    <div className="popup popup_image">
+    <div className={selectedCard ? 'popup popup_image popup_hide' : ''}>
       <div className="popup__overlay"></div>
       <div className="popup__image-container">
         <button
