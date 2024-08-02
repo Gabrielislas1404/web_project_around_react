@@ -109,6 +109,10 @@
   padding-bottom: 5px;
 }
 
+.popup__title_delete {
+  margin-bottom: 25px;
+}
+
 .popup__title_picture {
   margin-bottom: 30px;
 }
@@ -274,6 +278,10 @@
     margin-bottom: 54px;
     width: 358px;
     font-size: 24px;
+  }
+
+  .popup__title_delete {
+    margin-bottom: 20px;
   }
   .popup__input {
     width: 358px;

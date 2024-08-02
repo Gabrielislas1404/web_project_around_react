@@ -27,15 +27,18 @@
 }
 
 .elements__trash {
-  background: url(../images/Trashelement.svg) no-repeat center;
-  background-size: contain;
+  background-color: transparent;
   border: none;
   width: 18px;
   height: 19.3px;
   position: absolute;
-  top: 18px;
-  right: 15px;
+  top: 8px;
+  right: 4px;
   cursor: pointer;
+}
+
+.elements__trash_hidden {
+  display: none;
 }
 
 .elements__trash:hover {

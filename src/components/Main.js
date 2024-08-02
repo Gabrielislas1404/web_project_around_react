@@ -1,44 +1,21 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { api } from '../utils/api';
+import React, { useContext } from 'react';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import '../blocks/profile.css';
 import Card from './Card';
 import ImagePopup from './ImagePopup';
 
 function Main({
+  cards,
   onEditAvatarClick,
   onEditProfileClick,
   onAddPlaceClick,
   onCardClick,
   onClose,
   selectedCard,
+  onCardLike,
+  onCardDelete,
 }) {
-  const [userName, setUserName] = useState('');
-  const [userDescription, setUserDescription] = useState('');
-  const [userAvatar, setUserAvatar] = useState('');
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setUserName(data.name);
-        setUserDescription(data.about);
-        setUserAvatar(data.avatar);
-      })
-      .catch((error) => {
-        console.error('Error', error);
-      });
-
-    api
-      .getInitialCards()
-      .then((res) => {
-        setCards(res);
-      })
-      .catch((error) => {
-        console.error('Error', error);
-      });
-  }, []);
+  const { currentUser } = useContext(CurrentUserContext);
 
   return (
     <>
@@ -46,7 +23,7 @@ function Main({
         <div className="profile__picture-wrapper">
           <div className="profile__picture-overlay"></div>
           <img
-            src={userAvatar}
+            src={currentUser?.avatar}
             alt="foto de perfil"
             className="profile__picture"
           />
@@ -57,13 +34,13 @@ function Main({
         </div>
 
         <div className="profile__container">
-          <h1 className="profile__name">{userName}</h1>
+          <h1 className="profile__name">{currentUser?.name}</h1>
           <button
             type="button"
             className="profile__button"
             onClick={onEditProfileClick}
           ></button>
-          <h2 className="profile__about-me">{userDescription}</h2>
+          <h2 className="profile__about-me">{currentUser?.about}</h2>
         </div>
         <button
           type="button"
@@ -81,6 +58,8 @@ function Main({
               imagePopup={selectedCard}
               onCardClick={onCardClick}
               onClose={onClose}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
             ></Card>
           );
         })}

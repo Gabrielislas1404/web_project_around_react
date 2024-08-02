@@ -22,8 +22,7 @@ class Api {
       })
       .catch((error) => console.error('Error', error));
   }
-  updateUser(name, about) {
-    console.log('update user', name, about);
+  updateUser({ name, about }) {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
       method: 'PATCH',
@@ -39,7 +38,7 @@ class Api {
       .catch((error) => console.error('Error', error));
   }
 
-  updateAvatar(avatar) {
+  updateAvatar({ avatar }) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       headers: this.headers,
       method: 'PATCH',
@@ -54,7 +53,7 @@ class Api {
       .catch((error) => console.error('Error', error));
   }
 
-  addCard(name, link) {
+  addCard({ name, link }) {
     return fetch(`${this.baseUrl}/cards`, {
       headers: this.headers,
       method: 'POST',
@@ -85,10 +84,11 @@ class Api {
       .catch((error) => console.error('Error', error));
   }
 
-  likeCard(id) {
+  likeCard({ id, isLiked }) {
+    const method = isLiked ? 'PUT' : 'DELETE';
     return fetch(`${this.baseUrl}/cards/likes/${id}`, {
       headers: this.headers,
-      method: 'PUT',
+      method: method,
       body: JSON.stringify({
         id,
       }),
@@ -116,7 +116,9 @@ class Api {
   }
 }
 
-export const api = new Api('https://around.nomoreparties.co/v1/web_es_12', {
+const api = new Api('https://around.nomoreparties.co/v1/web_es_12', {
   authorization: 'fa25d0a0-1783-4d33-9dd9-ca8f33a53e6d',
   'Content-Type': 'application/json',
 });
+
+export default api;

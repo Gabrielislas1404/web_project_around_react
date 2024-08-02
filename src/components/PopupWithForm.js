@@ -3,26 +3,33 @@ function PopupWithForm({
   name,
   title,
   buttonTitle,
+  content,
+  buttonClass,
+  modifier,
   isOpen,
   onClose,
+  onSubmit,
   children,
 }) {
   return (
     <>
       <div className={`popup popup_${name} ${isOpen ? 'popup_hide' : ''} `}>
         <div className="popup__overlay"></div>
-        <form className={`popup__content popup__content_${name}`} noValidate>
+        <form
+          className={`popup__content popup__content_${content}`}
+          onSubmit={onSubmit}
+          noValidate
+        >
           <button
             type="button"
             className="popup__close-button"
             onClick={onClose}
           ></button>
 
-          <h4 className="popup__title">{title}</h4>
+          <h4 className={`popup__title popup__title_${modifier}`}>{title}</h4>
           {children}
           <button
-            className={`popup__save-button popup__save-button_${name}`}
-            disabled
+            className={`popup__save-button popup__save-button_${buttonClass}`}
             type="submit"
           >
             {buttonTitle}
