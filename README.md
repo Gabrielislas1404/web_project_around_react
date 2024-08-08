@@ -29,4 +29,7 @@ El enfoque de este proyecto fue utilizar herramientas de React para crear una r�
 
 ##### El proyecto ha sido realizado en VSS (Visual Studio Code) y visualizado con mi navegador Google Chrome Versión 116.0.5845.187 (Build oficial) (x86_64)
 
+Pueden visualizar mi página en Github pages en la siguiente dirección:
+https://gabrielislas1404.github.io/web_project_around_react/
+
 Gabriel Islas García
